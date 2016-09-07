@@ -36,7 +36,7 @@ public class PersonController {
         }
         personDao.savePerson(person);
         System.out.println(personDao);
-        return  new ModelAndView("redirect:/all");
+        return  new ModelAndView("redirect:/person/all");
     }
 
     @RequestMapping(value = "/all")
