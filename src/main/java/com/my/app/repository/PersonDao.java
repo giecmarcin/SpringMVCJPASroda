@@ -79,7 +79,6 @@ public class PersonDao {
     @Transactional
     public void savePerson(Person person){
         entityManager.persist(person);
-        person.setFirstName("Dada");
         entityManager.flush();
     }
 

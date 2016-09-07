@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,12 +33,13 @@ public class PersonController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView submitPersonForm(@Valid @ModelAttribute("person") Person person, BindingResult result){
-        if(result.hasErrors()){
-            System.out.println("Blad");
-        }
-        personDao.savePerson(person);
-        System.out.println(personDao);
-        return  new ModelAndView("redirect:/person/all");
+//        if(result.getSuppressedFields().length > 0){
+//            return new ModelAndView("redirect:/person/form");
+//        }else{
+            personDao.savePerson(person);
+            System.out.println(personDao);
+            return  new ModelAndView("redirect:/person/all");
+//        }
     }
 
     @RequestMapping(value = "/all")
@@ -44,4 +47,9 @@ public class PersonController {
         model.addAttribute("people", personDao.findAll());
         return "people";
     }
+
+//    @InitBinder("person")
+//    public void binderPerson(WebDataBinder binder){
+//        binder.setAllowedFields("firstName, lastname"); //remove lastname
+//    }
 }
