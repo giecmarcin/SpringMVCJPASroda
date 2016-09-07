@@ -24,7 +24,7 @@
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.2.11.v20150529</version>
+                <version>9.3.8.v20160314</version>
                 <configuration>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webApp>
@@ -37,7 +37,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.9</version>
+                <version>2.10</version>
                 <configuration>
                     <downloadSources>true</downloadSources>
                     <downloadJavadocs>true</downloadJavadocs>
@@ -58,13 +58,6 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-jsp -->
-        <!--<dependency>-->
-            <!--<groupId>org.eclipse.jetty</groupId>-->
-            <!--<artifactId>jetty-jsp</artifactId>-->
-            <!--<version>9.3.0.M1</version>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
@@ -76,14 +69,6 @@
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/jstl/jstl -->
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-
 
         <!-- compile only, deployed container will provide this -->
         <dependency>

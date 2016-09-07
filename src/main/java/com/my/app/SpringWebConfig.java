@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc //mvc:annotation-driven
 @Configuration
-@ComponentScan({"com.my.app"})
+@ComponentScan(basePackages = {"com.my.app"})
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

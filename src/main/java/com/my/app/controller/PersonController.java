@@ -14,20 +14,21 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 @Controller
+@RequestMapping("/person")
 public class PersonController {
 
     @Autowired
     private PersonDao personDao;
 
-    @RequestMapping("/person")
+    @RequestMapping("/form")
     public ModelAndView showAddPersonForm(){
-        return new ModelAndView("addPerson", "person", new Person());
+        return new ModelAndView("person", "person", new Person());
     }
 
-    @RequestMapping(value = "person/add", method = RequestMethod.POST)
-    public String submitPersonForm(@ModelAttribute("person") Person person){
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ModelAndView submitPersonForm(@ModelAttribute("person") Person person){
         personDao.savePerson(person);
         System.out.println(personDao);
-        return  "index";
+        return  new ModelAndView("redirect:/");
     }
 }
