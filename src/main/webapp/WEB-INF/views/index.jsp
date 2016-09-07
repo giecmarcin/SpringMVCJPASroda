@@ -8,6 +8,7 @@
     <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCss" />
     <link href="${bootstrapCss}" rel="stylesheet" />
 </head>
+
 <div>
     <nav class="navbar navbar-default">
         <div class="container-fluid">

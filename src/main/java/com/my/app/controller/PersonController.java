@@ -4,10 +4,14 @@ import com.my.app.model.Person;
 import com.my.app.repository.PersonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 /**
  * Created by mgiec on 9/7/2016.
@@ -26,9 +30,18 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView submitPersonForm(@ModelAttribute("person") Person person){
+    public ModelAndView submitPersonForm(@Valid @ModelAttribute("person") Person person, BindingResult result){
+        if(result.hasErrors()){
+            System.out.println("Blad");
+        }
         personDao.savePerson(person);
         System.out.println(personDao);
-        return  new ModelAndView("redirect:/");
+        return  new ModelAndView("redirect:/all");
+    }
+
+    @RequestMapping(value = "/all")
+    public String showAll(Model model){
+        model.addAttribute("people", personDao.findAll());
+        return "people";
     }
 }

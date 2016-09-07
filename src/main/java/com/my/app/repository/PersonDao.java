@@ -79,45 +79,27 @@ public class PersonDao {
     @Transactional
     public void savePerson(Person person){
         entityManager.persist(person);
+        person.setFirstName("Dada");
         entityManager.flush();
-        //entityManager.detach(person); usuwa obiekt z listy zarzadzanych obiektow
-        person.setFirstName("Java");
-
-        Person personMerge = entityManager.merge(person);
-        System.out.println(personMerge);
-//        Person newPerson = findById(person.getId());
-//        newPerson.setFirstName("Marcin");
-        //System.out.println(newPerson);
-
     }
 
-//    @Transactional
-//    public Person test1(){
-//        Person newPerson = findById(54);
-//        System.out.println(newPerson);
-//        newPerson.setFirstName(UUID.randomUUID().toString());
-//        return newPerson;
-//    }
-//
-//    @Transactional
-//    public void test2(){
-//        Person newPerson = findById(54);
-//        System.out.println(newPerson);
-//    }
 
     public Person findById(long id){
         return entityManager.find(Person.class, id);
     }
 
     public List<Person> findByNameAndLastname(String firstname, String lastname){
-        TypedQuery query = entityManager.createQuery("select p from Person  join fetch p.contacts where p.firstName=:firstname and p.lastname=:lastname",Person.class);
+        TypedQuery query = entityManager.createQuery("select p from Person p  join fetch p.contacts where p.firstName=:firstname and p.lastname=:lastname",Person.class);
         query.setParameter("firstname", firstname);
         query.setParameter("lastname", lastname);
         List<Person> people = query.getResultList();
         return people;
     }
 
-
+    public List<Person> findAll(){
+        TypedQuery query = entityManager.createQuery("select p from Person p", Person.class);
+        return  query.getResultList();
+    }
 //    public void cost(){
 //        savePerson(da);
 //        saveContact(da);
