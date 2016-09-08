@@ -69,7 +69,7 @@
     <button id="refreshPeople" class="btn btn-default" type="submit">Refresh</button>
 
     <div class="people">
-        <table class="data-contacts-js table table-striped">
+        <table class="data-person-js table table-striped">
             <tr>
                 <th>Name</th>
                 <th>Lastname</th>
@@ -80,14 +80,14 @@
 
             $("#refreshPeople").bind("click", function () {
 
-                var d = $.get("http://localhost:8080/app/rest/person/all", function (data) {
-                        $.each(data, function (i, person) {
-                            $(".data-contacts-js").append(
-                                    "<tr><td>" + person.firstName + "</td>" +
-                                    "<td>" + person.lastname + "</td>" +
-                                    "<td>" + 'Dodaj kontakt' + "</td>" +
-                                    "</tr>");
-                        });
+                $.get("http://localhost:8080/app/rest/person/all", function (data) {
+                    $.each(data, function (i, person) {
+                        $(".data-person-js").append(
+                                "<tr><td>" + person.firstName + "</td>" +
+                                "<td>" + person.lastname + "</td>" +
+                                "<td>" + 'Dodaj kontakt' + "</td>" +
+                                "</tr>");
+                    });
                 });
             });
         </script>
