@@ -45,11 +45,25 @@
             );
         }
     </script>
+
+    <script type="text/javascript">
+        function showContactForm() {
+            var row = "<tr>" +
+            "<td>" + 'Type: <input type="text">'+ "</td>" +
+            "<td>" + 'Value: <input type="text">' + "</td>" +
+            "</tr>";
+            //wstawiaj wiersze do listy
+            $(".proba").append(
+                   "<li>"+ row+"</li>"
+            );
+        }
+    </script>
 </head>
 <body>
 <div class="col-md-10 col-xs-offset-1">
     <h1>Add Person using Ajax</h1>
-    <table>
+    <br/><input type="button" value="Add Users" onclick="doAjaxPostPerson()">
+    <table class="contactForm">
         <tr>
             <td>Enter your name:</td>
             <td><input type="text" id="firstName"></td>
@@ -60,8 +74,20 @@
             <td><input type="text" id="lastname"></td>
         </tr>
         <br/>
+        <%--<tr>--%>
+            <%--<td>Confirm</td>--%>
+            <%--<td colspan="2"><input type="button" value="Add Users" onclick="doAjaxPostPerson()"><br/></td>--%>
+        <%--</tr>--%>
         <tr>
-            <td colspan="2"><input type="button" value="Add Users" onclick="doAjaxPostPerson()"><br/></td>
+            <td>Kontakty</td>
+            <td><input type="button" value="Show form" onclick="showContactForm()"></td>
+        </tr>
+        <tr>
+            <td>
+                <ul class="proba">
+
+                </ul>
+            </td>
         </tr>
     </table>
     <br/>

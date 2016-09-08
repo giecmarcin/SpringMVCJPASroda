@@ -1,5 +1,6 @@
 package com.my.app.controller;
 
+import com.my.app.model.Contact;
 import com.my.app.model.Person;
 import com.my.app.repository.PersonDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,16 @@ public class PersonRestController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<Person> createPerson(@RequestBody Person person) {
         personDao.savePerson(person);
+        if (person.getId() == 0) {
+            return new ResponseEntity<Person>(person, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<Person>(person, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/merge", method = RequestMethod.POST)
+    public ResponseEntity<Person> mergePerson(@RequestBody Person person, @RequestBody Contact contact) {
+        person.getContacts().add(contact);
+        personDao.mergePerson(person);
         if (person.getId() == 0) {
             return new ResponseEntity<Person>(person, HttpStatus.BAD_REQUEST);
         }
