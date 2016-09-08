@@ -13,15 +13,15 @@
     <title>Title</title>
 </head>
 <body>
-<form:form method="post" action="/app/person/add" modelAttribute="person">
+<form:form method="post" action="/app/person/contact/add" modelAttribute="person">
     <table>
         <tr>
-            <td><form:label path="firstName">Name</form:label></td>
-            <td><form:input path="firstName" /></td>
+            <td><form:label path="type">Type</form:label></td>
+            <td><form:input path="type" /></td>
         </tr>
         <tr>
-            <td><form:label path="lastname">Lastname</form:label></td>
-            <td><form:input path="lastname" /></td>
+            <td><form:label path="value">Lastname</form:label></td>
+            <td><form:input path="value" /></td>
         </tr>
         <tr>
             <td colspan="2">

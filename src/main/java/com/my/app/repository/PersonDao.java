@@ -87,8 +87,19 @@ public class PersonDao {
         return entityManager.find(Person.class, id);
     }
 
+    public Person findbyIdWithContacts(long id){
+        TypedQuery query = entityManager.createQuery("select distinct  p from Person p left join fetch p.contacts where p.id=:id", Person.class);
+        query.setParameter("id", id);
+        List<Person> people = query.getResultList();
+        if(people.isEmpty()){
+            return null;
+        }else{
+            return people.get(0);
+        }
+
+    }
     public List<Person> findByNameAndLastname(String firstname, String lastname){
-        TypedQuery query = entityManager.createQuery("select p from Person p  join fetch p.contacts where p.firstName=:firstname and p.lastname=:lastname",Person.class);
+        TypedQuery query = entityManager.createQuery("select p from Person p left join fetch p.contacts where p.firstName=:firstname and p.lastname=:lastname",Person.class);
         query.setParameter("firstname", firstname);
         query.setParameter("lastname", lastname);
         List<Person> people = query.getResultList();
@@ -96,11 +107,7 @@ public class PersonDao {
     }
 
     public List<Person> findAll(){
-        TypedQuery query = entityManager.createQuery("select p from Person p", Person.class);
+        TypedQuery query = entityManager.createQuery("select distinct p from Person p left join fetch p.contacts", Person.class);
         return  query.getResultList();
     }
-//    public void cost(){
-//        savePerson(da);
-//        saveContact(da);
-//    }
 }
