@@ -26,7 +26,6 @@ public class PersonRestController {
     @Autowired
     private PersonDao personDao;
 
-    //Dlaczego powtarza?
     @GetMapping("/all")
     public ResponseEntity<List<Person>> findAll() {
         List<Person> people = personDao.findAll();
