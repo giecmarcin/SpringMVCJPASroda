@@ -16,4 +16,9 @@ public class HelloController {
         modelMap.addAttribute("message", "Spring MVC");
         return "index";
     }
+
+    @RequestMapping("/all")
+    public String showView(){
+        return "restPerson";
+    }
 }

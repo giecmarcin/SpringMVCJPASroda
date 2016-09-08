@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
@@ -44,6 +45,13 @@ public class PersonRestController {
         }
         return new ResponseEntity<Person>(person, HttpStatus.OK);
     }
+
+//    @RequestMapping(value = "/add", method = RequestMethod.GET)
+//    public ModelAndView showPersonForm(){
+//        ModelAndView mav = new ModelAndView("restPerson");
+//        mav.addObject("nperson", new Person());
+//        return mav;
+//    }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity<Person> createPerson(@RequestBody Person person) {
