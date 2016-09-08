@@ -110,4 +110,10 @@ public class PersonDao {
         TypedQuery query = entityManager.createQuery("select distinct p from Person p left join fetch p.contacts", Person.class);
         return  query.getResultList();
     }
+
+    @Transactional
+    public Person mergePerson(Person person){
+        Person p = entityManager.merge(person);
+        return p;
+    }
 }
