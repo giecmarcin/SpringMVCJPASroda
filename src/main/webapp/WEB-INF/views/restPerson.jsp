@@ -71,8 +71,10 @@
     <div class="people">
         <table class="data-person-js table table-striped">
             <tr>
+                <th>Id</th>
                 <th>Name</th>
                 <th>Lastname</th>
+                <th>Kontakt</th>
             </tr>
         </table>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -83,7 +85,9 @@
                 $.get("http://localhost:8080/app/rest/person/all", function (data) {
                     $.each(data, function (i, person) {
                         $(".data-person-js").append(
-                                "<tr><td>" + person.firstName + "</td>" +
+                                "<tr>" +
+                                "<td>" + person.id + "</td>" +
+                                "<td>" + person.firstName + "</td>" +
                                 "<td>" + person.lastname + "</td>" +
                                 "<td>" + 'Dodaj kontakt' + "</td>" +
                                 "</tr>");
