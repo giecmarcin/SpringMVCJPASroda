@@ -17,6 +17,22 @@
             //get the form values
             var firstName = $('#firstName').val();
             var lastname = $('#lastname').val();
+            var pcontacts=[];
+
+
+            $( "li").each(function( index ) {
+                var tempType = $( this ).find("input.contactType").val();
+                var tempContact = $( this ).find("input.contactValue").val();
+                var box = {
+                    type: tempType,
+                    value: tempContact
+                };
+                pcontacts.push(box);
+            });
+
+//            for(var i=0; i<contacts.length; i++){
+//               alert(pcontacts[i].type + ' ' + pcontacts[i].value);
+//            }
 
             $.ajax({
                         type: "POST",
@@ -24,7 +40,8 @@
                         url: "/app/rest/person/add",
                         data: JSON.stringify({
                             firstName: firstName,
-                            lastname: lastname
+                            lastname: lastname,
+                            contacts: pcontacts
                         }),
                         headers: {
                             'Accept': 'application/json',
@@ -48,13 +65,13 @@
 
     <script type="text/javascript">
         function showContactForm() {
-            var row = "<tr>" +
-            "<td>" + 'Type: <input type="text">'+ "</td>" +
-            "<td>" + 'Value: <input type="text">' + "</td>" +
+            var row = "<tr class='rowWithContactData'>" +
+            "<td>" + 'Type: <input type="text" class="contactType">'+ "</td>" +
+            "<td>" + 'Value: <input type="text" class="contactValue">' + "</td>" +
             "</tr>";
             //wstawiaj wiersze do listy
-            $(".proba").append(
-                   "<li>"+ row+"</li>"
+            $(".lOfPeople").append(
+                   "<li class='contactForPerson'>"+ row+"</li>"
             );
         }
     </script>
@@ -84,7 +101,7 @@
         </tr>
         <tr>
             <td>
-                <ul class="proba">
+                <ul class="lOfPeople">
 
                 </ul>
             </td>

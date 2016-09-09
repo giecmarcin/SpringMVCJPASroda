@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HelloController {
 
-    @RequestMapping("/")
-    public String index(ModelMap modelMap){
-        modelMap.addAttribute("message", "Spring MVC");
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String index(ModelMap modelMap){
+//        modelMap.addAttribute("message", "Spring MVC");
+//        return "index";
+//    }
 
-    @RequestMapping("/all")
+    @RequestMapping("/")
     public String showView(){
         return "restPerson";
     }
