@@ -132,6 +132,7 @@
 
                 $.get("http://localhost:8080/app/rest/person/all", function (data) {
                     $.each(data, function (i, person) {
+
                         $(".data-person-js").append(
                                 "<tr>" +
                                 "<td>" + person.id + "</td>" +
