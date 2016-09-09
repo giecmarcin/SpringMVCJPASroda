@@ -17,12 +17,12 @@
             //get the form values
             var firstName = $('#firstName').val();
             var lastname = $('#lastname').val();
-            var pcontacts=[];
+            var pcontacts = [];
 
 
-            $( "li").each(function( index ) {
-                var tempType = $( this ).find("input.contactType").val();
-                var tempContact = $( this ).find("input.contactValue").val();
+            $("li").each(function (index) {
+                var tempType = $(this).find("input.contactType").val();
+                var tempContact = $(this).find("input.contactValue").val();
                 var box = {
                     type: tempType,
                     value: tempContact
@@ -66,12 +66,12 @@
     <script type="text/javascript">
         function showContactForm() {
             var row = "<tr class='rowWithContactData'>" +
-            "<td>" + 'Type: <input type="text" class="contactType">'+ "</td>" +
-            "<td>" + 'Value: <input type="text" class="contactValue">' + "</td>" +
-            "</tr>";
+                    "<td>" + 'Type: <input type="text" class="contactType">' + "</td>" +
+                    "<td>" + 'Value: <input type="text" class="contactValue">' + "</td>" +
+                    "</tr>";
             //wstawiaj wiersze do listy
             $(".lOfPeople").append(
-                   "<li class='contactForPerson'>"+ row+"</li>"
+                    "<li class='contactForPerson'>" + row + "</li>"
             );
         }
     </script>
@@ -92,8 +92,8 @@
         </tr>
         <br/>
         <%--<tr>--%>
-            <%--<td>Confirm</td>--%>
-            <%--<td colspan="2"><input type="button" value="Add Users" onclick="doAjaxPostPerson()"><br/></td>--%>
+        <%--<td>Confirm</td>--%>
+        <%--<td colspan="2"><input type="button" value="Add Users" onclick="doAjaxPostPerson()"><br/></td>--%>
         <%--</tr>--%>
         <tr>
             <td>Kontakty</td>
@@ -112,18 +112,22 @@
     <button id="refreshPeople" class="btn btn-default" type="submit">Refresh</button>
 
     <div class="people">
-        <table class="data-person-js table table-striped">
+        <table class="data-person-js table table-striped" id="tabPeople">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Lastname</th>
                 <th>Kontakt</th>
             </tr>
+            </thead>
         </table>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script type="text/javascript">
 
             $("#refreshPeople").bind("click", function () {
+
+                $('#tabPeople tbody').html('');
 
                 $.get("http://localhost:8080/app/rest/person/all", function (data) {
                     $.each(data, function (i, person) {
