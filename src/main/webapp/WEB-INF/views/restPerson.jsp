@@ -118,6 +118,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Lastname</th>
+                <th>Kontakty</th>
                 <th>Kontakt</th>
             </tr>
             </thead>
@@ -136,6 +137,7 @@
                                 "<td>" + person.id + "</td>" +
                                 "<td>" + person.firstName + "</td>" +
                                 "<td>" + person.lastname + "</td>" +
+                                "<td>" + person.contacts + "</td>" +
                                 "<td>" + 'Dodaj kontakt' + "</td>" +
                                 "</tr>");
                     });
